@@ -1,46 +1,49 @@
-let menu = document.querySelector('#menu-bar');
-let navbar = document.querySelector('.navbar');
-let header=document.querySelector('.header-2');
-menu.addEventListener('click',() =>{
-    menu.classList.toggle('fa-times');
-    navbar.classList.toggle('active');
+const data = [
+    {
+        name: "abi",
+        Maths:"96",
+        Physics:"85",
+        Chemistry :"90",
+        Percentage : "90.3 %"
+    },
+    {
+        name: "som",
+        Maths:"70",
+        Physics:"80",
+        Chemistry : "95",
+        Percentage : "81.6 %"
+    },
+    {
+        name: "anu",
+        Maths:"100",
+        Physics:"75",
+        Chemistry : "85",
+        Percentage : "86.6 %"
+    },
+    {
+        name: "ram",
+        Maths:"90",
+        Physics:"75",
+        Chemistry : "80",
+        Percentage : "81.6 %"
 
-
-
-});
-window.onscroll= () =>{
-    menu.classList.remove('fa-times');
-    navbar.classList.remove('active');
-
-    if(window.scrollY > 150){
-        header.classList.add('active');
     }
-    else{
-        header.classList.remove('active');
+]
+
+const results = document.getElementById('res')
+
+const smBtn = document.getElementById('smt-btn')
+smBtn.addEventListener("click", function() {
+    const name = document.getElementById('name-box').value;
+    for(let i = 0; i < data.length; i++){
+        if(data[i].name.toLowerCase() == name.toLowerCase()){
+            console.log(data[i].marks)
+            results.innerHTML ="<h3>" + "Maths : " + data[i].Maths +"</h3>" + "<h3>" + "Physics : " 
+            + data[i].Physics +"</h3>" +"<h3>" + "Chemistry : " + data[i].Chemistry +"</h3>"+
+            "Percentage : " +data[i].Percentage + "</h3>"
+            return;
+        }
     }
+    results.innerHTML = "<h3>" + "Information is not available!!!" + "</h3>" 
 
-}
-let countDate = new Date('august 25,2021 00:00:00').getTime();
-function CountDown(){
-    let now = new Date().getTime();
-    gap = countDate - now;
-    let second = 1000;
-    let minute = second*60;
-    let hour = minute*60;
-    let day =hour*24;
-
-    let d = Math.floor(gap/(day));
-    let h = Math.floor((gap % (day)) / (hour));
-    let m = Math.floor((gap % (hour)) / (minute));
-    let s = Math.floor((gap % (minute)) / (second));
-
-    document.getElementById('day').innerText = d;
-    document.getElementById('hour').innerText = h;
-    document.getElementById('minute').innerText = m;
-    document.getElementById('second').innerText = s;
-
-}
-setInterval(function(){
-    CountDown();
-
-},1000)
+}) 
